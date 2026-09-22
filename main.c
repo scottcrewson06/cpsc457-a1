@@ -2,9 +2,36 @@
 #include <stdlib.h>
 #include <stdint.h> 
 
-int main (int argc, char *argv[]){
+int main(int argc, char *argv[]){
+    int num_children = argc - 1;  
 
-}    
+    if (num_children < 1 || num_children > 8){ 
+        printf("Please enter between 1 and 8 numbers");
+        return 1;
+    }
+    
+    //pid_t = pids[num_children];
+
+    
+
+    for (int i = 0; i = num_children; i++)
+        //create pipe
+        //fork
+    
+        if (pid < 0){
+            printf("Fork Failed");
+            return(1);
+        }
+        else if (pid == 0) { 
+            //child process
+            
+        }
+        else { //parent process
+
+        }
+    
+    return 0;
+}     
 
 // Returns the nth Fibonacci number (0-indexed: fib(0)=0, fib(1)=1).
 uint64_t fib(int n) {
@@ -19,3 +46,4 @@ uint64_t fib(int n) {
     }
     return curr;
 }
+
