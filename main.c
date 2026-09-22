@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h> 
+#include <sys/wait.h>
 
 int main(int argc, char *argv[]){
     int num_children = argc - 1;  
@@ -10,7 +11,14 @@ int main(int argc, char *argv[]){
         return 1;
     }
     
-    //pid_t = pids[num_children];
+    pid_t = pids[num_children];
+
+    int pipefd[2];
+
+    if (pipe(pipefd) == -1){
+        printf("Pipe creation failed");
+        return 1;
+    }
 
     
 
