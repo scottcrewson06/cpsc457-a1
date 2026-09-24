@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdint.h> 
 #include <unistd.h>
-#include <sys/wait.h>
 
 #define MAX_CHILDREN 8 //Max number of chidren
 #define BUFF_SIZE 32 //A big enough buffer that can hold the fibonacci number while writing 
@@ -66,10 +65,12 @@ int main(int argc, char *argv[]){
         for(i=0; i < num_children; i++){
             char buffer[BUFF_SIZE];
 
+            waitpid(pid[i], NULL, 0); //wait for child to finish
+
+
             read(fd[i][0],buffer,BUFF_SIZE); //read result from pipe
             close(fd[i][0]); //close read end
 
-            waitpid(pid[i], NULL, 0); //wait for child to finish
 
             printf("Child %d (PID %d): fib(%d) = %s\n", i, pid[i], n[i], buffer);
 
