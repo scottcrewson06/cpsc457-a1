@@ -20,32 +20,19 @@ int main(int argc, char *argv[]){
         return 1;
     }
     
-    pid_t = pids[num_children];
 
-    int pipefd[2];
+    for (int i = 0; i < num_children; i++){
+        n[i] = atoi(argv[i + 1]); // Convert argument to integer
 
-    if (pipe(pipefd) == -1){
-        printf("Pipe creation failed");
-        return 1;
-    }
-
-    
-
-    for (int i = 0; i = num_children; i++)
         //create pipe
-        //fork
+        if (pipe(fd[i]) == -1) {
+            perror("pipe");
+            return 1;
+        }
+    }
     
-        if (pid < 0){
-            printf("Fork Failed");
-            return(1);
-        }
-        else if (pid == 0) { 
-            //child process
-            
-        }
-        else { //parent process
+    
 
-        }
     
     return 0;
 }     
