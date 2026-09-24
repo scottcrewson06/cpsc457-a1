@@ -3,6 +3,7 @@
 #include <stdint.h> 
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 
 #define MAX_CHILDREN 8 //Max number of chidren
 #define BUFF_SIZE 32 //A big enough buffer that can hold the fibonacci number while writing 
@@ -50,13 +51,14 @@ int main(int argc, char *argv[]){
             printf("Fork failed for child %d\n", i);
             return 1;
         }
-        else if (pid == 0){
+        else if (pid[i] == 0){
             char buffer[BUFF_SIZE];
             uint64_t result = fib(n[i]); // Calculate Fibonacci number
             close(fd[i][0]); // Close read end of the pipe in child
             snprintf(buffer, BUFF_SIZE, "%llu", result); // Convert result to string
             write(fd[i][1], buffer, strlen(buffer) + 1); // Write result to pipe
             close(fd[i][1]); // Close write end of the pipe in child
+            exit(0);
         }
         else {
             close(fd[i][1]); // Close write end of the pipe in parent
@@ -80,7 +82,7 @@ int main(int argc, char *argv[]){
     
     
 
-    
+    }
     return 0;
 }     
 
