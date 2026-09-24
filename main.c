@@ -45,6 +45,7 @@ int main(int argc, char *argv[]){
         }
         
         pid[i] = fork(); //create child process
+
         if (pid[i] < 0) {
             printf("Fork failed for child %d\n", i);
             return 1;
@@ -59,6 +60,20 @@ int main(int argc, char *argv[]){
         }
         else {
             close(fd[i][1]); // Close write end of the pipe in parent
+        }
+
+        //loop to read results from children
+        for(i=0; i < num_children; i++){
+            char buffer[BUFF_SIZE];
+
+            read(fd[i][0],buffer,BUFF_SIZE); //read result from pipe
+            close(fd[i][0]); //close read end
+
+            waitpid(pid[i], NULL, 0); //wait for child to finish
+
+            printf("Child %d (PID %d): fib(%d) = %s\n", i, pid[i], n[i], buffer);
+
+
         }
     
     
