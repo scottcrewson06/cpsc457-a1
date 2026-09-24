@@ -63,7 +63,7 @@ int main(int argc, char *argv[]){
         else {
             close(fd[i][1]); /* Close write end of the pipe in parent */
         }
-
+    }
     /*loop to read results from children*/
     for(int j=0; j < num_children; j++){
         char buffer[BUFF_SIZE];
@@ -81,10 +81,8 @@ int main(int argc, char *argv[]){
     }
 
 
+        return 0;
 
-    }
-    return 0;
-}     
-
+    }  
 
 
