@@ -65,14 +65,14 @@ int main(int argc, char *argv[]){
         }
 
         //loop to read results from children
-        for(i=0; i < num_children; i++){
+        for(j=0; j < num_children; j++){
             char buffer[BUFF_SIZE];
 
-            waitpid(pid[i], NULL, 0); //wait for child to finish
+            waitpid(pid[j], NULL, 0); //wait for child to finish
 
 
-            read(fd[i][0],buffer,BUFF_SIZE); //read result from pipe
-            close(fd[i][0]); //close read end
+            read(fd[j][0],buffer,BUFF_SIZE); //read result from pipe
+            close(fd[j][0]); //close read end
 
 
             printf("Child %d (PID %d): fib(%d) = %s\n", i, pid[i], n[i], buffer);
