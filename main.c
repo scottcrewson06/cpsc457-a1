@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h> 
 #include <unistd.h>
+#include <string.h>
 
 #define MAX_CHILDREN 8 //Max number of chidren
 #define BUFF_SIZE 32 //A big enough buffer that can hold the fibonacci number while writing 
