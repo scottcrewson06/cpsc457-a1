@@ -8,8 +8,12 @@
 #define BUFF_SIZE 32 //A big enough buffer that can hold the fibonacci number while writing 
 
 int main(int argc, char *argv[]){
-    int num_children = argc - 1;  //number of children is the number of arguments passed minus 1 (the program name)
-    
+    int num_children = argc - 1;  /* number of children is the number of arguments passed minus 1 (the program name) */
+    int   i;                    /* shared loop counter */
+    int   n[MAX_CHILDREN];         /* the Fibonacci index each child computes */
+    pid_t pid[MAX_CHILDREN];       /* PID of each child, so we can wait and print it */
+    int   fd[MAX_CHILDREN][2];     /* one pipe per child: fd[i][0]=read, fd[i][1]=write */
+
 
     if (num_children < 1 || num_children > MAX_CHILDREN){ 
         printf("Please enter between 1 and 8 numbers");
