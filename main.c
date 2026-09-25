@@ -1,3 +1,9 @@
+/* 
+ * CPSC 457 Assignment 1
+ * Siddharth Engineer and Scott Crewson
+ * Prof. Jalal Kawash, TA: Stephen MacKenzie
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h> 
